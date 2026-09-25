@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Watch</title>
+
+    <style>
+        body {
+            background-color:white;
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .watch {
+            background-color: #111;
+            color: white;
+            width: 400px;
+            padding: 30px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 0 25px #00ffcc;
+        }
+
+        #time {
+            font-size: 50px;
+            font-weight: bold;
+            color: #00ffcc;
+        }
+
+        #date {
+            font-size: 22px;
+            margin-top: 15px;
+            color: yellow;
+        }
+
+        #day {
+            font-size: 25px;
+            margin-top: 10px;
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="watch">
+
+        <div id="time">time</div>
+
+        <div id="date">date</div>
+
+        <div id="day"> day </div>
+
+    </div>
+
+    <script>
+
+        function digitalWatch() {
+
+            //  current date and time
+            let now = new Date();
+            //  time
+            let time = now.toLocaleTimeString("eng-US" , 
+                {
+                    hour:"2-digit",
+                    minute:"2-digit",
+                    second:"2-digit",
+                    hour12: true
+                }
+            );
+
+            //  date
+            let date = now.toLocaleDateString("eng-US",
+                {
+                    day:"2-digit",
+                    month:"long",
+                    year:"numeric"
+                }
+            );
+
+            //  day
+            let day = now.toLocaleDateString("en-US", {
+                weekday: "long"
+            });
+
+            // Display time
+            document.getElementById("time").innerHTML = time;
+
+            // Display date
+            document.getElementById("date").innerHTML = date;
+
+            // Display day
+            document.getElementById("day").innerHTML = day;
+        }
+
+        // Run function every 1 second
+        setInterval(digitalWatch, 1000);
+
+        // Run once immediately
+        digitalWatch();
+
+    </script>
+
+</body>
+</html>
